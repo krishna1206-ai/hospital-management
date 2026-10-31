@@ -67,6 +67,12 @@ npm run create-admin -- "Full Name" you@yourhospital.org "A-long-password-1"
 
 The server then serves the built app and the API on one port (4000 by default). Production never loads demo data and refuses to start without `JWT_SECRET`. Put it behind HTTPS, because session cookies are marked Secure. Set `TRUST_PROXY=1` behind a reverse proxy so audit logs and rate limits see real client IPs. Back up `server/data/` regularly.
 
+## Deploying a demo to Vercel
+
+Import the project or run `npx vercel --prod`. No settings are needed. `api/index.js` runs the API as a serverless function, and the frontend is built with Vite.
+
+Vercel has no permanent disk, so this is **for demos only**. The database lives in temporary storage and returns to the demo data whenever Vercel starts a new instance, and two instances may not see each other's changes. The sign-in page shows public demo accounts, so never enter real patient data. For permanent data, use the production steps above on a host with a persistent disk, such as a VPS, Render or Railway.
+
 ## Before using it with real patients
 
 This is a working foundation, not a certified medical product. Before holding real patient data, you still need:

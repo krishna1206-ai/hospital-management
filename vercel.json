@@ -1,0 +1,13 @@
+{
+  "framework": "vite",
+  "functions": {
+    "api/index.js": {
+      "includeFiles": "server/src/db/schema.sql",
+      "maxDuration": 30
+    }
+  },
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api" },
+    { "source": "/((?!api/).*)", "destination": "/index.html" }
+  ]
+}

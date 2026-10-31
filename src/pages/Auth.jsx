@@ -2,7 +2,7 @@ import { useQueryClient } from '@tanstack/react-query'
 import { useState } from 'react'
 import { BrandMark } from '../components/Layout.jsx'
 import { Field } from '../components/forms.jsx'
-import { ErrorBox } from '../components/ui.jsx'
+import { ErrorBox, Warn } from '../components/ui.jsx'
 import { api } from '../lib/api.js'
 import { useAuth } from '../lib/hooks.js'
 
@@ -79,9 +79,12 @@ export function Login() {
             <input className="input" type="password" autoComplete="current-password" value={password} onChange={(event) => setPassword(event.target.value)} />
           </Field>
           <button className="btn primary full" disabled={busy}>{busy ? 'Signing in…' : 'Sign in'}</button>
-          {import.meta.env.DEV && (
+          {import.meta.env.VITE_DEMO && (
+            <Warn>Demo site with public passwords. Never enter real patient information. Data resets without notice.</Warn>
+          )}
+          {(import.meta.env.DEV || import.meta.env.VITE_DEMO) && (
             <div>
-              <div className="faint" style={{ marginBottom: 6 }}>Demo accounts (development only)</div>
+              <div className="faint" style={{ marginBottom: 6 }}>Demo accounts</div>
               <div className="demo-list">
                 {DEMO_ACCOUNTS.map(([label, account]) => (
                   <button type="button" key={account} className="btn sm" disabled={busy} onClick={() => signIn(account, DEMO_PASSWORD)}>{label}</button>

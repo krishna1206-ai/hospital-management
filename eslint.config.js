@@ -19,7 +19,7 @@ export default defineConfig([
     },
   },
   {
-    files: ['server/**/*.js', '*.config.js'],
+    files: ['server/**/*.js', 'api/**/*.js', '*.config.js'],
     extends: [js.configs.recommended],
     languageOptions: { globals: globals.node },
   },
